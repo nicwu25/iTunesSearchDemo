@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		27289557D9341A45EA4B141A /* Pods_iTunesSearchDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1707D8536CDBF09F523AE185 /* Pods_iTunesSearchDemo.framework */; };
 		9D66F0CD2951640C00BB0058 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0CC2951640C00BB0058 /* AppDelegate.swift */; };
-		9D66F0D12951640C00BB0058 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0D02951640C00BB0058 /* ViewController.swift */; };
+		9D66F0D12951640C00BB0058 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0D02951640C00BB0058 /* SearchViewController.swift */; };
 		9D66F0D62951640C00BB0058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D66F0D52951640C00BB0058 /* Assets.xcassets */; };
 		9D66F0D92951640C00BB0058 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D66F0D72951640C00BB0058 /* LaunchScreen.storyboard */; };
 		9D66F0E3295166AA00BB0058 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0E2295166AA00BB0058 /* EndPoint.swift */; };
@@ -23,6 +23,9 @@
 		9D66F0F42951750D00BB0058 /* APIEngine+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0F32951750D00BB0058 /* APIEngine+Search.swift */; };
 		9D66F0F8295179F900BB0058 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D66F0F6295179F900BB0058 /* Main.storyboard */; };
 		9D66F0FB29517A7900BB0058 /* SearchResultDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0FA29517A7900BB0058 /* SearchResultDataModel.swift */; };
+		9D66F0FF295186C900BB0058 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0FE295186C900BB0058 /* SearchTableViewCell.swift */; };
+		9D66F10129518BFE00BB0058 /* CellReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F10029518BFE00BB0058 /* CellReusable.swift */; };
+		9D66F10429518CC500BB0058 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F10329518CC500BB0058 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +34,7 @@
 		8FE0B26A82D47E7181E07A4C /* Pods-iTunesSearchDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesSearchDemo.release.xcconfig"; path = "Target Support Files/Pods-iTunesSearchDemo/Pods-iTunesSearchDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9D66F0C92951640C00BB0058 /* iTunesSearchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D66F0CC2951640C00BB0058 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9D66F0D02951640C00BB0058 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9D66F0D02951640C00BB0058 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9D66F0D52951640C00BB0058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D66F0D82951640C00BB0058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D66F0DA2951640C00BB0058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +49,9 @@
 		9D66F0F32951750D00BB0058 /* APIEngine+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIEngine+Search.swift"; sourceTree = "<group>"; };
 		9D66F0F7295179F900BB0058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D66F0FA29517A7900BB0058 /* SearchResultDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDataModel.swift; sourceTree = "<group>"; };
+		9D66F0FE295186C900BB0058 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		9D66F10029518BFE00BB0058 /* CellReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReusable.swift; sourceTree = "<group>"; };
+		9D66F10329518CC500BB0058 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +96,6 @@
 		9D66F0CB2951640C00BB0058 /* iTunesSearchDemo */ = {
 			isa = PBXGroup;
 			children = (
-				9D66F0D02951640C00BB0058 /* ViewController.swift */,
 				9D66F0CC2951640C00BB0058 /* AppDelegate.swift */,
 				9D66F0D52951640C00BB0058 /* Assets.xcassets */,
 				9D66F0F6295179F900BB0058 /* Main.storyboard */,
@@ -99,6 +104,9 @@
 				9D66F0EC2951675400BB0058 /* Utility */,
 				9D66F0E02951669200BB0058 /* APIEngine */,
 				9D66F0F929517A6700BB0058 /* DataModel */,
+				9D66F0FC2951838B00BB0058 /* ViewController */,
+				9D66F10229518CB600BB0058 /* ViewModel */,
+				9D66F0FD2951841D00BB0058 /* View */,
 			);
 			path = iTunesSearchDemo;
 			sourceTree = "<group>";
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				9D66F0ED2951676000BB0058 /* Logger.swift */,
+				9D66F10029518BFE00BB0058 /* CellReusable.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -140,6 +149,30 @@
 				9D66F0FA29517A7900BB0058 /* SearchResultDataModel.swift */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		9D66F0FC2951838B00BB0058 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9D66F0D02951640C00BB0058 /* SearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9D66F0FD2951841D00BB0058 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9D66F0FE295186C900BB0058 /* SearchTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9D66F10229518CB600BB0058 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9D66F10329518CC500BB0058 /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DF0F7D9FF54371FD8657B7B0 /* Frameworks */ = {
@@ -271,9 +304,12 @@
 				9D66F0E3295166AA00BB0058 /* EndPoint.swift in Sources */,
 				9D66F0E7295166E500BB0058 /* ParameterEncoding.swift in Sources */,
 				9D66F0F02951679900BB0058 /* APIEngine.swift in Sources */,
+				9D66F10429518CC500BB0058 /* SearchViewModel.swift in Sources */,
+				9D66F10129518BFE00BB0058 /* CellReusable.swift in Sources */,
 				9D66F0FB29517A7900BB0058 /* SearchResultDataModel.swift in Sources */,
 				9D66F0E9295166F400BB0058 /* NetworkError.swift in Sources */,
-				9D66F0D12951640C00BB0058 /* ViewController.swift in Sources */,
+				9D66F0FF295186C900BB0058 /* SearchTableViewCell.swift in Sources */,
+				9D66F0D12951640C00BB0058 /* SearchViewController.swift in Sources */,
 				9D66F0CD2951640C00BB0058 /* AppDelegate.swift in Sources */,
 				9D66F0F42951750D00BB0058 /* APIEngine+Search.swift in Sources */,
 				9D66F0EE2951676000BB0058 /* Logger.swift in Sources */,
@@ -429,7 +465,6 @@
 				INFOPLIST_FILE = iTunesSearchDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -458,7 +493,6 @@
 				INFOPLIST_FILE = iTunesSearchDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
