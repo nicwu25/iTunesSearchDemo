@@ -16,7 +16,8 @@ extension SearchAPI: EndPoint {
         switch self {
         case .searchMusic(let keyword):
             let term = keyword.replacingOccurrences(of: " ", with: "+")
-            return "search?term=\(term)&media=music"
+            let termEncoded = term.urlEncoded() ?? term
+            return "search?term=\(termEncoded)&media=music"
         }
     }
     

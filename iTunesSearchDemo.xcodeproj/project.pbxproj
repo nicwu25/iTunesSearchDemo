@@ -35,6 +35,7 @@
 		9DC3CA432952EA63002A5E96 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA422952EA63002A5E96 /* UIViewController+Extension.swift */; };
 		9DC3CA452952F302002A5E96 /* AVPlayerItemStatusObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA442952F302002A5E96 /* AVPlayerItemStatusObserver.swift */; };
 		9DC3CA472952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA462952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift */; };
+		9DC3CA4929530E80002A5E96 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA4829530E80002A5E96 /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		9DC3CA422952EA63002A5E96 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		9DC3CA442952F302002A5E96 /* AVPlayerItemStatusObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerItemStatusObserver.swift; sourceTree = "<group>"; };
 		9DC3CA462952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerItemPlayingObserver.swift; sourceTree = "<group>"; };
+		9DC3CA4829530E80002A5E96 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 			children = (
 				9D66F11629520F4100BB0058 /* TimeInterval+Extension .swift */,
 				9D66F11829520F6A00BB0058 /* CMTime+Extension .swift */,
+				9DC3CA4829530E80002A5E96 /* String+Extension.swift */,
 				9DC3CA422952EA63002A5E96 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
@@ -349,6 +352,7 @@
 				9D66F0E3295166AA00BB0058 /* EndPoint.swift in Sources */,
 				9D66F0E7295166E500BB0058 /* ParameterEncoding.swift in Sources */,
 				9D66F0F02951679900BB0058 /* APIEngine.swift in Sources */,
+				9DC3CA4929530E80002A5E96 /* String+Extension.swift in Sources */,
 				9DC3CA472952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift in Sources */,
 				9D66F10429518CC500BB0058 /* SearchViewModel.swift in Sources */,
 				9DC3CA452952F302002A5E96 /* AVPlayerItemStatusObserver.swift in Sources */,
