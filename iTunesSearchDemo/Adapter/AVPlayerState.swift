@@ -8,9 +8,13 @@
 import Foundation
 
 enum AVPlayerState {
+    case initialization
     case unknown
     case readyToPlay
+    case playing
+    case paused
+    case stoped
     case failed(Error?)
-    case waitForNetwork
+    case waitingForNetwork
     case playToEnd
 }

@@ -28,10 +28,25 @@ class SearchViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var playerView: PlayerView = {
+        let view = PlayerView()
+        view.playbackButton.addTarget(self, action: #selector(playbackButtonDidTap), for: .touchUpInside)
+        view.closeButton.addTarget(self, action: #selector(closePlayerViewButtonDidTap), for: .touchUpInside)
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var viewModel: SearchViewModel = {
         let viewModel = SearchViewModel()
         viewModel.delegate = self
         return viewModel
+    }()
+    
+    private lazy var player: AVPlayerAdapter = {
+        let player = AVPlayerAdapter()
+        player.delegate = self
+        return player
     }()
     
     private var searchTask: DispatchWorkItem?
@@ -41,7 +56,7 @@ class SearchViewController: UIViewController {
         
         setupUI()
     }
-
+    
     private func setupUI() {
         view.backgroundColor = .white
         view.addSubview(searchBar)
@@ -68,6 +83,19 @@ class SearchViewController: UIViewController {
             ])
         }
     }
+    
+    @objc private func playbackButtonDidTap() {
+        if player.isPlaying {
+            player.pause()
+        } else {
+            player.play()
+        }
+    }
+    
+    @objc private func closePlayerViewButtonDidTap() {
+        player.stop()
+        removePlayerView()
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -78,14 +106,56 @@ extension SearchViewController: UISearchBarDelegate {
             self?.viewModel.searchMusic(keyword: searchText)
         }
         self.searchTask = searchTask
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: searchTask)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: searchTask)
     }
 }
 
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let playItem = viewModel.getResult(atIndexPath: indexPath) else { return }
+        
+        play(playItem: playItem)
+    }
+    
+    private func play(playItem: SearchResultDataModel.Result) {
+        addPlayerViewIfNeeded()
+        updatePlayerView(playItem: playItem)
+        player.load(with: playItem.previewUrl,
+                    metaData: AVPlayerMediaMetadata(title: playItem.trackName,
+                                                    albumTitle: playItem.collectionName,
+                                                    artist: playItem.artistName,
+                                                    imageUrl: playItem.artworkUrl100),
+                    autoStart: true)
+    }
+    
+    private func addPlayerViewIfNeeded() {
+        
+        guard !view.subviews.contains(playerView) else { return }
+        
+        let height: CGFloat = 80
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
+        view.addSubview(playerView)
+        NSLayoutConstraint.activate([
+            playerView.heightAnchor.constraint(equalToConstant: height),
+            playerView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
+            playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+    
+    private func removePlayerView() {
+        playerView.removeFromSuperview()
+        tableView.contentInset = .zero
+    }
+    
+    private func updatePlayerView(playItem: SearchResultDataModel.Result) {
+        playerView.artworkImageView.sd_setImage(with: URL(string: playItem.artworkUrl60))
+        playerView.artistNameLabel.text = playItem.artistName
+        playerView.trackNameLabel.text = playItem.trackName
     }
 }
 
@@ -100,7 +170,7 @@ extension SearchViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier, for: indexPath) as! SearchTableViewCell
         
         if let result = viewModel.getResult(atIndexPath: indexPath) {
-            cell.artworkImageView.sd_setImage(with: URL(string: result.artworkUrl30))
+            cell.artworkImageView.sd_setImage(with: URL(string: result.artworkUrl60))
             cell.artistNameLabel.text = result.artistName
             cell.trackNameLabel.text = result.trackName
         }
@@ -119,5 +189,36 @@ extension SearchViewController: SearchViewModelDelegate {
     
     func searchFailed(error: NetworkError) {
         Logger.log(error)
+    }
+}
+
+extension SearchViewController: AVPlayerAdapterDelegate {
+    
+    func didStateChange(_ state: AVPlayerState) {
+        switch state {
+        case .initialization:
+            playerView.setLoad()
+        case .unknown:
+            showAlert(title: "Error", message: "unknown error")
+        case .readyToPlay: break
+        case .playing:
+            playerView.setPause()
+        case .paused, .stoped:
+            playerView.setPlay()
+        case .failed(let error):
+            playerView.setPlay()
+            showAlert(title: "Error", message: error?.localizedDescription ?? "unknown error")
+        case .waitingForNetwork:
+            playerView.setLoad()
+        case .playToEnd:
+            playerView.setPlay()
+        }
+    }
+    
+    func didCurrentTimeChange(currentTime: Double) {
+    }
+    
+    func didCurrentTimeChange(progress: Float) {
+        playerView.updateProgress(progress)
     }
 }

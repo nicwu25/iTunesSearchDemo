@@ -21,3 +21,4 @@ extension CellReusable where Self: UIView {
 
 extension UITableViewCell: CellReusable {}
 extension UITableViewHeaderFooterView: CellReusable {}
+extension UICollectionViewCell: CellReusable {}

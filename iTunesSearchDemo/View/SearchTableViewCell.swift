@@ -11,6 +11,8 @@ class SearchTableViewCell: UITableViewCell {
 
     lazy var artworkImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -23,6 +25,7 @@ class SearchTableViewCell: UITableViewCell {
     
     lazy var artistNameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .gray 
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

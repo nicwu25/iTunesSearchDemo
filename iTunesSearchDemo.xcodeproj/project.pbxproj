@@ -26,11 +26,15 @@
 		9D66F0FF295186C900BB0058 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0FE295186C900BB0058 /* SearchTableViewCell.swift */; };
 		9D66F10129518BFE00BB0058 /* CellReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F10029518BFE00BB0058 /* CellReusable.swift */; };
 		9D66F10429518CC500BB0058 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F10329518CC500BB0058 /* SearchViewModel.swift */; };
+		9D66F1112951C4F600BB0058 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F1102951C4F600BB0058 /* PlayerView.swift */; };
 		9D66F1142951D72700BB0058 /* AVPlayerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F1132951D72700BB0058 /* AVPlayerAdapter.swift */; };
 		9D66F11729520F4100BB0058 /* TimeInterval+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F11629520F4100BB0058 /* TimeInterval+Extension .swift */; };
 		9D66F11929520F6A00BB0058 /* CMTime+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F11829520F6A00BB0058 /* CMTime+Extension .swift */; };
 		9DC3CA3F2952E584002A5E96 /* AVPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA3E2952E584002A5E96 /* AVPlayerState.swift */; };
 		9DC3CA412952E597002A5E96 /* AVPlayerMediaMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA402952E597002A5E96 /* AVPlayerMediaMetadata.swift */; };
+		9DC3CA432952EA63002A5E96 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA422952EA63002A5E96 /* UIViewController+Extension.swift */; };
+		9DC3CA452952F302002A5E96 /* AVPlayerItemStatusObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA442952F302002A5E96 /* AVPlayerItemStatusObserver.swift */; };
+		9DC3CA472952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA462952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,11 +61,15 @@
 		9D66F0FE295186C900BB0058 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		9D66F10029518BFE00BB0058 /* CellReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReusable.swift; sourceTree = "<group>"; };
 		9D66F10329518CC500BB0058 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		9D66F1102951C4F600BB0058 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		9D66F1132951D72700BB0058 /* AVPlayerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerAdapter.swift; sourceTree = "<group>"; };
 		9D66F11629520F4100BB0058 /* TimeInterval+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension .swift"; sourceTree = "<group>"; };
 		9D66F11829520F6A00BB0058 /* CMTime+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime+Extension .swift"; sourceTree = "<group>"; };
 		9DC3CA3E2952E584002A5E96 /* AVPlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerState.swift; sourceTree = "<group>"; };
 		9DC3CA402952E597002A5E96 /* AVPlayerMediaMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerMediaMetadata.swift; sourceTree = "<group>"; };
+		9DC3CA422952EA63002A5E96 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		9DC3CA442952F302002A5E96 /* AVPlayerItemStatusObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerItemStatusObserver.swift; sourceTree = "<group>"; };
+		9DC3CA462952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerItemPlayingObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				9D66F0FE295186C900BB0058 /* SearchTableViewCell.swift */,
+				9D66F1102951C4F600BB0058 /* PlayerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +202,8 @@
 				9D66F1132951D72700BB0058 /* AVPlayerAdapter.swift */,
 				9DC3CA3E2952E584002A5E96 /* AVPlayerState.swift */,
 				9DC3CA402952E597002A5E96 /* AVPlayerMediaMetadata.swift */,
+				9DC3CA442952F302002A5E96 /* AVPlayerItemStatusObserver.swift */,
+				9DC3CA462952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -202,6 +213,7 @@
 			children = (
 				9D66F11629520F4100BB0058 /* TimeInterval+Extension .swift */,
 				9D66F11829520F6A00BB0058 /* CMTime+Extension .swift */,
+				9DC3CA422952EA63002A5E96 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -337,11 +349,15 @@
 				9D66F0E3295166AA00BB0058 /* EndPoint.swift in Sources */,
 				9D66F0E7295166E500BB0058 /* ParameterEncoding.swift in Sources */,
 				9D66F0F02951679900BB0058 /* APIEngine.swift in Sources */,
+				9DC3CA472952F6B9002A5E96 /* AVPlayerItemPlayingObserver.swift in Sources */,
 				9D66F10429518CC500BB0058 /* SearchViewModel.swift in Sources */,
+				9DC3CA452952F302002A5E96 /* AVPlayerItemStatusObserver.swift in Sources */,
 				9D66F10129518BFE00BB0058 /* CellReusable.swift in Sources */,
 				9D66F11929520F6A00BB0058 /* CMTime+Extension .swift in Sources */,
+				9DC3CA432952EA63002A5E96 /* UIViewController+Extension.swift in Sources */,
 				9D66F0FB29517A7900BB0058 /* SearchResultDataModel.swift in Sources */,
 				9D66F0E9295166F400BB0058 /* NetworkError.swift in Sources */,
+				9D66F1112951C4F600BB0058 /* PlayerView.swift in Sources */,
 				9D66F0FF295186C900BB0058 /* SearchTableViewCell.swift in Sources */,
 				9D66F0D12951640C00BB0058 /* SearchViewController.swift in Sources */,
 				9D66F1142951D72700BB0058 /* AVPlayerAdapter.swift in Sources */,

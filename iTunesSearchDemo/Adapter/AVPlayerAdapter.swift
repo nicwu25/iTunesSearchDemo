@@ -10,26 +10,33 @@ import MediaPlayer
 
 protocol AVPlayerAdapterDelegate: AnyObject {
     func didStateChange(_ state: AVPlayerState)
-    func didCurrentTimeChange(_ currentTime: Double)
+    func didCurrentTimeChange(currentTime: Double)
+    func didCurrentTimeChange(progress: Float)
 }
 
 class AVPlayerAdapter: NSObject {
     
     weak var delegate: AVPlayerAdapterDelegate?
     
-    static let shared = AVPlayerAdapter()
-    
     private var player: AVPlayer = AVPlayer(playerItem: nil)
+    
+    private var playerItemPlayingObserver: AVPlayerItemPlayingObserver?
+    
+    private var playerItemStatusObserver: AVPlayerItemStatusObserver?
     
     private var timeObserverToken: Any?
     
-    var status: AVPlayerState = .unknown {
+    var status: AVPlayerState = .initialization {
         didSet {
             delegate?.didStateChange(status)
         }
     }
     
-    private override init() {
+    var isPlaying: Bool {
+        player.rate != 0 && player.error == nil
+    }
+    
+    override init() {
         super.init()
         
         register()
@@ -46,11 +53,13 @@ class AVPlayerAdapter: NSObject {
     }
     
     func load(with url: URL, metaData: AVPlayerMediaMetadata, autoStart: Bool) {
+        status = .initialization
         removePeriodicTimeObserver()
         let asset = AVAsset(url: url)
         let playerItem = AVPlayerItem(asset: asset)
-        playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.new, .old, .initial], context: nil)
         player = AVPlayer(playerItem: playerItem)
+        observingPlayerItemStatus(playerItem: playerItem)
+        observingPlayerItemPlaying()
         updateNowPlayingInfo(metaData: metaData)
         guard autoStart else { return }
         play()
@@ -62,58 +71,48 @@ class AVPlayerAdapter: NSObject {
     }
     
     func pause() {
+        removePeriodicTimeObserver()
         player.pause()
+        status = .paused
     }
     
     func stop() {
-        player.replaceCurrentItem(with: nil)
         removePeriodicTimeObserver()
+        playerItemStatusObserver = nil
+        playerItemPlayingObserver = nil
+        player.replaceCurrentItem(with: nil)
+        status = .stoped
     }
 }
 
 extension AVPlayerAdapter {
     
-    private func addObserver() {
-        player.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new, .old, .initial], context: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleAVPlayerItemPlaybackStalled),
-                                               name: NSNotification.Name.AVPlayerItemPlaybackStalled, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleAVPlayerItemDidPlayToEndTime),
-                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleAVPlayerItemFailedToPlayToEndTime),
-                                               name: NSNotification.Name.AVPlayerItemFailedToPlayToEndTime, object: nil)
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case #keyPath(AVPlayerItem.status):
-            switch player.currentItem?.status {
+    private func observingPlayerItemStatus(playerItem: AVPlayerItem) {
+        playerItemStatusObserver = AVPlayerItemStatusObserver(playerItem: playerItem) { [weak self] status in
+            switch status {
             case .unknown:
-                status = .unknown
+                self?.status = .unknown
             case .readyToPlay:
-                status = .readyToPlay
+                self?.status = .readyToPlay
             case .failed:
-                status = .failed(player.currentItem?.error)
-            case .none:
-                status = .failed(player.currentItem?.error)
+                self?.status = .failed(self?.player.currentItem?.error)
             @unknown default:
-                status = .failed(player.currentItem?.error)
+                self?.status = .unknown
             }
-        default: break
         }
     }
     
-    @objc private func handleAVPlayerItemPlaybackStalled() {
-        status = .waitForNetwork
-    }
-    
-    @objc private func handleAVPlayerItemDidPlayToEndTime() {
-        status = .playToEnd
-    }
-    
-    @objc private func handleAVPlayerItemFailedToPlayToEndTime(_ notification: Notification) {
-        let error = notification.userInfo?[AVPlayerItemFailedToPlayToEndTimeErrorKey] as? Error
-        status = .failed(error)
+    private func observingPlayerItemPlaying() {
+        playerItemPlayingObserver = AVPlayerItemPlayingObserver()
+        playerItemPlayingObserver?.handlePlaybackStalled = { [weak self] in
+            self?.status = .waitingForNetwork
+        }
+        playerItemPlayingObserver?.handleDidPlayToEndTime = { [weak self] in
+            self?.status = .playToEnd
+        }
+        playerItemPlayingObserver?.handleFailedToPlayToEndTime = { [weak self] error in
+            self?.status = .failed(error)
+        }
     }
 }
 
@@ -121,7 +120,10 @@ extension AVPlayerAdapter {
     
     private func addPeriodicTimeObserver() {
         timeObserverToken = player.addPeriodicTimeObserver(forInterval: 1.cmTime, queue: .main) { [weak self] cmTime in
-            self?.delegate?.didCurrentTimeChange(cmTime.timeInterval)
+            self?.status = .playing
+            self?.delegate?.didCurrentTimeChange(currentTime: cmTime.timeInterval)
+            guard let duration = self?.player.currentItem?.asset.duration else { return }
+            self?.delegate?.didCurrentTimeChange(progress: Float(cmTime.timeInterval/duration.timeInterval))
         }
     }
     

@@ -14,6 +14,8 @@ struct SearchResultDataModel: Codable {
 
 extension SearchResultDataModel {
     struct Result: Codable {
-        let trackName, artistName, artworkUrl30, artworkUrl60, artworkUrl100: String
+        let trackName, artistName, collectionName: String
+        let previewUrl: URL
+        let artworkUrl30, artworkUrl60, artworkUrl100: String
     }
 }
