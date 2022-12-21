@@ -6,6 +6,7 @@ target 'iTunesSearchDemo' do
   use_frameworks!
   pod 'Alamofire'
   pod 'SDWebImage'
+  pod 'IQKeyboardManagerSwift'
 
   # Pods for iTunesSearchDemo
 
