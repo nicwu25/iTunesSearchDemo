@@ -26,6 +26,11 @@
 		9D66F0FF295186C900BB0058 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F0FE295186C900BB0058 /* SearchTableViewCell.swift */; };
 		9D66F10129518BFE00BB0058 /* CellReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F10029518BFE00BB0058 /* CellReusable.swift */; };
 		9D66F10429518CC500BB0058 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F10329518CC500BB0058 /* SearchViewModel.swift */; };
+		9D66F1142951D72700BB0058 /* AVPlayerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F1132951D72700BB0058 /* AVPlayerAdapter.swift */; };
+		9D66F11729520F4100BB0058 /* TimeInterval+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F11629520F4100BB0058 /* TimeInterval+Extension .swift */; };
+		9D66F11929520F6A00BB0058 /* CMTime+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D66F11829520F6A00BB0058 /* CMTime+Extension .swift */; };
+		9DC3CA3F2952E584002A5E96 /* AVPlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA3E2952E584002A5E96 /* AVPlayerState.swift */; };
+		9DC3CA412952E597002A5E96 /* AVPlayerMediaMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC3CA402952E597002A5E96 /* AVPlayerMediaMetadata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +57,11 @@
 		9D66F0FE295186C900BB0058 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		9D66F10029518BFE00BB0058 /* CellReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReusable.swift; sourceTree = "<group>"; };
 		9D66F10329518CC500BB0058 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		9D66F1132951D72700BB0058 /* AVPlayerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerAdapter.swift; sourceTree = "<group>"; };
+		9D66F11629520F4100BB0058 /* TimeInterval+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension .swift"; sourceTree = "<group>"; };
+		9D66F11829520F6A00BB0058 /* CMTime+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime+Extension .swift"; sourceTree = "<group>"; };
+		9DC3CA3E2952E584002A5E96 /* AVPlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerState.swift; sourceTree = "<group>"; };
+		9DC3CA402952E597002A5E96 /* AVPlayerMediaMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerMediaMetadata.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +111,8 @@
 				9D66F0F6295179F900BB0058 /* Main.storyboard */,
 				9D66F0D72951640C00BB0058 /* LaunchScreen.storyboard */,
 				9D66F0DA2951640C00BB0058 /* Info.plist */,
+				9D66F11529520F0200BB0058 /* Extension */,
+				9D66F1122951D70900BB0058 /* Adapter */,
 				9D66F0EC2951675400BB0058 /* Utility */,
 				9D66F0E02951669200BB0058 /* APIEngine */,
 				9D66F0F929517A6700BB0058 /* DataModel */,
@@ -173,6 +185,25 @@
 				9D66F10329518CC500BB0058 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9D66F1122951D70900BB0058 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				9D66F1132951D72700BB0058 /* AVPlayerAdapter.swift */,
+				9DC3CA3E2952E584002A5E96 /* AVPlayerState.swift */,
+				9DC3CA402952E597002A5E96 /* AVPlayerMediaMetadata.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		9D66F11529520F0200BB0058 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9D66F11629520F4100BB0058 /* TimeInterval+Extension .swift */,
+				9D66F11829520F6A00BB0058 /* CMTime+Extension .swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		DF0F7D9FF54371FD8657B7B0 /* Frameworks */ = {
@@ -299,20 +330,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D66F0F2295169DC00BB0058 /* SearchAPI.swift in Sources */,
+				9DC3CA3F2952E584002A5E96 /* AVPlayerState.swift in Sources */,
 				9D66F0EB2951673F00BB0058 /* NetworkLogger.swift in Sources */,
+				9D66F11729520F4100BB0058 /* TimeInterval+Extension .swift in Sources */,
 				9D66F0E5295166D100BB0058 /* HTTPMethod.swift in Sources */,
 				9D66F0E3295166AA00BB0058 /* EndPoint.swift in Sources */,
 				9D66F0E7295166E500BB0058 /* ParameterEncoding.swift in Sources */,
 				9D66F0F02951679900BB0058 /* APIEngine.swift in Sources */,
 				9D66F10429518CC500BB0058 /* SearchViewModel.swift in Sources */,
 				9D66F10129518BFE00BB0058 /* CellReusable.swift in Sources */,
+				9D66F11929520F6A00BB0058 /* CMTime+Extension .swift in Sources */,
 				9D66F0FB29517A7900BB0058 /* SearchResultDataModel.swift in Sources */,
 				9D66F0E9295166F400BB0058 /* NetworkError.swift in Sources */,
 				9D66F0FF295186C900BB0058 /* SearchTableViewCell.swift in Sources */,
 				9D66F0D12951640C00BB0058 /* SearchViewController.swift in Sources */,
+				9D66F1142951D72700BB0058 /* AVPlayerAdapter.swift in Sources */,
 				9D66F0CD2951640C00BB0058 /* AppDelegate.swift in Sources */,
 				9D66F0F42951750D00BB0058 /* APIEngine+Search.swift in Sources */,
 				9D66F0EE2951676000BB0058 /* Logger.swift in Sources */,
+				9DC3CA412952E597002A5E96 /* AVPlayerMediaMetadata.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
