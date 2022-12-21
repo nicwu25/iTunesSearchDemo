@@ -138,8 +138,8 @@ extension AVPlayerAdapter {
     
     func updateNowPlayingInfo(metaData: AVPlayerMediaMetadata) {
         var nowPlayingInfo = [String: Any]()
-        nowPlayingInfo[MPMediaItemPropertyTitle] = metaData.albumTitle
-        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = metaData.title
+        nowPlayingInfo[MPMediaItemPropertyTitle] = metaData.title
+        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = metaData.artist
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1
         
         if let url = URL(string: metaData.imageUrl),
