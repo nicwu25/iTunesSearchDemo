@@ -16,28 +16,26 @@ class SearchViewModel {
     
     weak var delegate: SearchViewModelDelegate?
     
-    var searchResult: SearchResultDataModel?
+    var results: [SearchResultEntity] = []
     
-    var results: [SearchResultDataModel.Result] {
-        searchResult?.results ?? []
+    private let repository: SearchResultRepository
+    
+    init(repository: SearchResultRepository) {
+        self.repository = repository
     }
     
-    func getResult(atIndexPath indexPath: IndexPath) -> SearchResultDataModel.Result? {
+    func getResult(atIndexPath indexPath: IndexPath) -> SearchResultEntity? {
         if results.indices.contains(indexPath.row) {
             return results[indexPath.row]
         }
         return nil
     }
-}
-
-// MARK: - API Method
-extension SearchViewModel {
     
     func searchMusic(keyword: String) {
-        APIEngine.shared.searchMusic(keyword: keyword) { result in
+        repository.searchMusic(keyword: keyword) { result in
             switch result {
-            case .success(let searchResult):
-                self.searchResult = searchResult
+            case .success(let results):
+                self.results = results
                 self.delegate?.didSearched()
             case .failure(let error):
                 self.delegate?.searchFailed(error: error)

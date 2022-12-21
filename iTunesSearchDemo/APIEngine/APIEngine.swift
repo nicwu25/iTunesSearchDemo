@@ -7,11 +7,9 @@
 
 import Alamofire
 
-class APIEngine {
+struct APIEngine {
     
-    static let shared = APIEngine()
-    
-    private init() {
+    init() {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 10
         config.timeoutIntervalForResource = 10

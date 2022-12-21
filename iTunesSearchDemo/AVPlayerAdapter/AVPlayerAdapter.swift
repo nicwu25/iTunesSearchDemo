@@ -24,6 +24,8 @@ class AVPlayerAdapter: NSObject {
     
     private var playerItemStatusObserver: AVPlayerItemStatusObserver?
     
+    private var nowPlayingInfoHepler: NowPlayingInfoHepler = NowPlayingInfoHepler()
+    
     private var timeObserverToken: Any?
     
     var status: AVPlayerState = .initialization {
@@ -60,7 +62,7 @@ class AVPlayerAdapter: NSObject {
         player = AVPlayer(playerItem: playerItem)
         observingPlayerItemStatus(playerItem: playerItem)
         observingPlayerItemPlaying()
-        updateNowPlayingInfo(metaData: metaData)
+        nowPlayingInfoHepler.update(metaData: metaData)
         guard autoStart else { return }
         play()
     }
@@ -135,22 +137,6 @@ extension AVPlayerAdapter {
 }
 
 extension AVPlayerAdapter {
-    
-    func updateNowPlayingInfo(metaData: AVPlayerMediaMetadata) {
-        var nowPlayingInfo = [String: Any]()
-        nowPlayingInfo[MPMediaItemPropertyTitle] = metaData.title
-        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = metaData.artist
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1
-        
-        if let url = URL(string: metaData.imageUrl),
-            let data = try? Data(contentsOf: url),
-            let image = UIImage(data: data) {
-            let artwork = MPMediaItemArtwork.init(image: image)
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
-        }
-        
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-    }
     
     func setupRemoteCommand() {
         let center = MPRemoteCommandCenter.shared()

@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
@@ -38,7 +38,7 @@ class SearchViewController: UIViewController {
     }()
     
     private lazy var viewModel: SearchViewModel = {
-        let viewModel = SearchViewModel()
+        let viewModel = SearchViewModel(repository: SearchResultRepositoryImpl())
         viewModel.delegate = self
         return viewModel
     }()
@@ -121,10 +121,11 @@ extension SearchViewController: UITableViewDelegate {
         play(playItem: playItem)
     }
     
-    private func play(playItem: SearchResultDataModel.Result) {
+    private func play(playItem: SearchResultEntity) {
+        guard let url = URL(string: playItem.previewURL) else { return }
         addPlayerViewIfNeeded()
         updatePlayerView(playItem: playItem)
-        player.load(with: playItem.previewUrl,
+        player.load(with: url,
                     metaData: AVPlayerMediaMetadata(title: playItem.trackName,
                                                     albumTitle: playItem.collectionName,
                                                     artist: playItem.artistName,
@@ -152,7 +153,7 @@ extension SearchViewController: UITableViewDelegate {
         tableView.contentInset = .zero
     }
     
-    private func updatePlayerView(playItem: SearchResultDataModel.Result) {
+    private func updatePlayerView(playItem: SearchResultEntity) {
         playerView.artworkImageView.sd_setImage(with: URL(string: playItem.artworkUrl60))
         playerView.artistNameLabel.text = playItem.artistName
         playerView.trackNameLabel.text = playItem.trackName
@@ -188,6 +189,7 @@ extension SearchViewController: SearchViewModelDelegate {
     }
     
     func searchFailed(error: NetworkError) {
+        showAlert(title: error.getErrorMessage())
         Logger.log(error)
     }
 }
